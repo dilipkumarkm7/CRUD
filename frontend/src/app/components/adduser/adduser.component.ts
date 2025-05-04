@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adduser',
@@ -17,7 +18,8 @@ export class AdduserComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private router: Router
   ) {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
@@ -36,5 +38,8 @@ export class AdduserComponent {
         this.userForm.reset();
       });
     }
+    setTimeout(() => {
+      this.router.navigate(['/listuser']);
+    }, 2500);
   }
 }
